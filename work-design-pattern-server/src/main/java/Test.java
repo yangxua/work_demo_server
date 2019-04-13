@@ -37,5 +37,6 @@ public class Test {
             System.out.print(iterator.getPreviousItem() + ",");
             iterator.previous();
         }
+
     }
 }
