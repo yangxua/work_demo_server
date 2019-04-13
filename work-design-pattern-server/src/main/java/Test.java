@@ -1,9 +1,7 @@
-import aggregate.AbstractObjectList;
-import concreteaggregate.ProductList;
-import iterator.AbstractIterator;
-
-import java.util.ArrayList;
-import java.util.List;
+import concreteobserver.Player;
+import concretesubject.ConcreteAllyControlCenter;
+import observer.Observer;
+import subject.AllyControlCenter;
 
 /**
  * @Auther: allanyang
@@ -13,29 +11,22 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        List products = new ArrayList();
-        products.add("倚天剑");
-        products.add("屠龙刀");
-        products.add("断肠草");
-        products.add("葵花宝典");
-        products.add("四十二章经");
+        AllyControlCenter acc = new ConcreteAllyControlCenter("金庸群侠");
+        Observer p1,p2,p3,p4;
+        p1 = new Player("杨过");
+        acc.join(p1);
 
-        AbstractObjectList list;
-        AbstractIterator iterator;
-        list = new ProductList(products);
-        iterator = list.createIterator();
+        p2 = new Player("令狐冲");
+        acc.join(p2);
 
-        System.out.println("正向便利");
-        while(!iterator.isLast()) {
-            System.out.print(iterator.getNextItem() + ",");
-            iterator.next();
-        }
+        p3 = new Player("张无忌");
+        acc.join(p3);
 
-        System.out.println();
-        System.out.println("你想便利");
-        while(!iterator.isFirst()) {
-            System.out.print(iterator.getPreviousItem() + ",");
-            iterator.previous();
-        }
+        p4 = new Player("段誉");
+        acc.join(p4);
+
+        //某成员遭受攻击
+        p1.beAttacked(acc);
+
     }
 }
